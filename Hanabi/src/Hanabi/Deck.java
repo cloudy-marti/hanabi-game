@@ -1,18 +1,15 @@
+package Hanabi;
+
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.Collections;
 
-
-public class Deck
+public class Deck extends Cards
 {
-	private final ArrayList<Card> deck;
-	
 	public Deck()
 	{
-		this.deck = new ArrayList<>();
+		super();
 
-		int i;
-		for(i = 0; i < 3; ++i)
+		for(int i = 0; i < 3; ++i)
 		{
 			addCards(1);
 
@@ -41,31 +38,8 @@ public class Deck
 		deck.add(new Card(Color.YELLOW, number));
 	}
 
-	public ArrayList<Card> getDeck()
-	{
-		return this.deck;
-	}
-
 	public Card draw()
 	{
 		return deck.remove(0);
-	}
-
-	public int size()
-	{
-		return deck.size();
-	}
-
-	@Override
-	public String toString()
-	{
-		StringBuilder deckStr = new StringBuilder();
-
-		for(Card card : deck)
-		{
-			deckStr.append(card);
-		}
-
-		return deckStr.toString();
 	}
 }

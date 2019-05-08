@@ -1,5 +1,6 @@
-import java.awt.Color;
+package Hanabi;
 
+import java.awt.Color;
 
 public class Card {
 	private final Color color;
@@ -13,12 +14,12 @@ public class Card {
 
 	public Color getColor()
 	{
-		return this.color;
+		return color;
 	}
 
 	public int getNumber()
 	{
-		return this.number;
+		return number;
 	}
 
 	@Override
@@ -37,6 +38,6 @@ public class Card {
 		else
 			myColor = "W";
 
-		return "["+ myColor + ", " + this.number + "]";
+		return "["+ myColor + ", " + number + "]";
 	}
 }
