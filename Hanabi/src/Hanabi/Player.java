@@ -3,24 +3,37 @@ package Hanabi;
 import java.awt.*;
 import java.util.Scanner;
 
+/**
+ * All variables and methods directly linked to the player
+ */
 public class Player
 {
 	private final String name;
 	private final Hand hand;
-	
+
+	/**
+	 * Constructor of Player with a given name.
+	 * Board is needed to get the cards for the player's hand.
+	 * @param name Name of the player
+	 * @param board Main board
+	 */
 	public Player(String name, Board board)
 	{
 		this.name = name;
 		this.hand = new Hand(board);
 	}
 
+	/**
+	 * Getter function - Player's name.
+	 * @return String
+	 */
 	public String getName()
 	{
 		return this.name;
 	}
 
 	/**
-	 * Get index input from the player
+	 * Get index input from the player.
 	 * @return input integer
 	 */
 	public int getIndexInput()
@@ -38,7 +51,7 @@ public class Player
 	}
 
 	/**
-	 * Get color input from the player
+	 * Get color input from the player.
 	 * @return color string
 	 */
 	public String getColorInput()
@@ -52,8 +65,8 @@ public class Player
 	}
 
 	/**
-	 * Drawing a card from the deck to the player's hand
-	 * Won't take any card if the deck is empty
+	 * Drawing a card from the deck to the player's hand.
+	 * Won't take any card if the deck is empty.
 	 * @param board Hanabi.Board where the game is played on
 	 */
 	private void draw(Board board)
@@ -69,8 +82,8 @@ public class Player
 	}
 
 	/**
-	 * Discard the card from the player's hand
-	 * Add this card to the discard deck
+	 * Discards the card from the player's hand.
+	 * Add this card to the discard deck.
 	 * @param board Hanabi.Board where the game is played on
 	 * @param index Index of the card to be discarded, chosen by the player
 	 */
@@ -103,10 +116,10 @@ public class Player
 				return false;
 			}
 			/**
-			 * game design choice : if the player gave a random color, not existing in board yet and the card played is 1
+			 * Game design choice : if the player gave a random color, not existing in board yet and the card played is 1
 			 * We let them play the card anyway
 			 *
-			 * In real life, if the player has a 1 and wants to put it on game, he/she will put it in a empty random space
+			 * In real life, when the player has a 1 and wants to put it on game, he/she will put it in a empty random space
 			 * Even without knowing the color yet (useless on first turns)
 			 */
 			else
@@ -115,7 +128,7 @@ public class Player
 			}
 		}
 		/**
-		 * if the board has the color chosen
+		 * If the board has already the chosen color
 		 */
 		else
 		{
@@ -124,7 +137,6 @@ public class Player
 				return false;
 			}
 		}
-
 		return true;
 	}
 
@@ -194,11 +206,20 @@ public class Player
 		draw(board);
 	}
 
+	/**
+	 * Getter function of Player's hand
+	 * @return Hand
+	 */
 	public Hand getHand()
 	{
 		return this.hand;
 	}
 
+	/**
+	 * Display the hand of the player
+	 * toString() does only have the player's name, so this function gives the hand when needed
+	 * @return String
+	 */
 	public String handToString()
 	{
 		StringBuilder string = new StringBuilder();
@@ -210,12 +231,21 @@ public class Player
 		return string.toString();
 	}
 
+	/**
+	 * Display the player's name
+	 * @return String
+	 */
 	@Override
 	public String toString()
 	{
 		return "Player " + name;
 	}
 
+	/**
+	 * Checks if the player has the same name
+	 * @param player Player to be compared with this player
+	 * @return boolean
+	 */
 	public boolean equals(Player player)
 	{
 		return name == player.getName();

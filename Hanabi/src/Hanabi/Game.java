@@ -2,8 +2,16 @@ package Hanabi;
 
 import java.util.Scanner;
 
+/**
+ * Gameflow Manager - Will manage the turns and call the moves chosen by the players
+ */
 public class Game
 {
+	/**
+	 * Main turn manager.
+	 * This function allows the players to choose which move they want to do in their turn.
+	 * @param board Main board of the game
+	 */
 	public static void turn(Board board) {
 
 		Player currentPlayer = whoseTurn(board);
@@ -38,11 +46,21 @@ public class Game
 		}
 	}
 
+	/**
+	 * Calculates whose player is the current turn using the number of the turn.
+	 * @param board
+	 * @return Player
+	 */
 	private static Player whoseTurn(Board board)
 	{
 		return board.getPlayers().get(board.getTurn()%board.getPlayers().size());
 	}
 
+	/**
+	 * When the player chooses to play a card and put it on the board
+	 * @param board
+	 * @param player
+	 */
 	private static void play(Board board, Player player)
 	{
 		System.out.println("Choose which card you are going to play :");
@@ -54,6 +72,11 @@ public class Game
 		player.playAndDraw(board, x, color);
 	}
 
+	/**
+	 * When the player chooses to discard a card
+	 * @param board
+	 * @param player
+	 */
 	private static void discard(Board board, Player player)
 	{
 		try
@@ -71,6 +94,15 @@ public class Game
 		player.discardAndDraw(board, x);
 	}
 
+	/**
+	 * When the player chooses to give a hint to another player.<p>
+	 *     <i>Function not fully implemented yet.</i>
+	 * </p>
+	 * The hint is given only if there is at least one blue token.
+	 * If there are not enough token, the function catches an exception and allows the player to choose another move by decreasing the turn number.
+	 * @param board
+	 * @param player
+	 */
 	private static void hint(Board board, Player player)
 	{
 		try

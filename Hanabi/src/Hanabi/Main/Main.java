@@ -6,6 +6,9 @@ import Hanabi.Player;
 
 import java.util.Scanner;
 
+/**
+ * Main class which calls the board's constructor and the main game's loop.
+ */
 public class Main {
 
 	public static void main(String[] args) {
@@ -34,6 +37,9 @@ public class Main {
 		boolean game = true;
 		int turnsLeft = board.getNumberOfPlayers();
 
+		/**
+		 * Game loop
+		 */
 		while(game)
 		{
 			System.out.println("\n--------- Current status of board ---------" + board + "-------------------------------------------");
@@ -41,23 +47,28 @@ public class Main {
 			Game.turn(board);
 			board.nextTurn();
 
+			/**
+			 * Game ending's condition (1) = The main board's deck is empty.
+			 * Let the players play one more time each before finishing the game.
+			 */
 			if(board.getDeck().size() == 0)
 			{
 				System.out.println("woops deck is empty");
 				turnsLeft--;
 
-				/**
-				 * Let the players play one more time before finishing the game.
-				 */
 				if(turnsLeft <= 0)
 				{
 					game = false;
 				}
 			}
 
+			/**
+			 * Game ending's condition (2) = 3 red tokens earned.
+			 * Losing condition.
+			 */
 			if(board.getRedToken() >= 3)
 			{
-				System.out.println("woops too many errors you ded");
+				System.out.println("woops too many errors you are dead");
 				game = false;
 			}
 		}
