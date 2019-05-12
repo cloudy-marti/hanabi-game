@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"Hanabi","l":"Board"},{"p":"Hanabi","l":"Card"},{"p":"Hanabi","l":"Cards"},{"p":"Hanabi","l":"Deck"},{"p":"Hanabi","l":"Discard"},{"p":"Hanabi","l":"Game"},{"p":"Hanabi","l":"Hand"},{"p":"Hanabi.Main","l":"Main"},{"p":"Hanabi","l":"Player"}]
