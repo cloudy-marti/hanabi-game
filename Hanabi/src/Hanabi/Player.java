@@ -1,6 +1,7 @@
 package Hanabi;
 
 import java.awt.*;
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -206,6 +207,11 @@ public class Player
 		draw(board);
 	}
 
+	public void giveAHint(Board board, Player chosenPlayer)
+	{
+		System.out.println();
+	}
+
 	/**
 	 * Getter function of Player's hand
 	 * @return Hand
@@ -213,6 +219,40 @@ public class Player
 	public Hand getHand()
 	{
 		return this.hand;
+	}
+
+	public void showOwnHand()
+	{
+		StringBuilder handStr = new StringBuilder();
+
+		handStr.append("\t ");
+		for(Card card : hand.getDeck())
+		{
+			handStr.append(card.showHint());
+		}
+
+		handStr.append("\n\t(");
+
+		for(Card card : hand.getDeck())
+		{
+			handStr.append(card.hiddenCardToString());
+		}
+		handStr.append(")");
+
+		System.out.println(handStr);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Player player = (Player) o;
+		return Objects.equals(name.toLowerCase(), player.name.toLowerCase());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
 	}
 
 	/**

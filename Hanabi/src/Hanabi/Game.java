@@ -64,6 +64,7 @@ public class Game
 	private static void play(Board board, Player player)
 	{
 		System.out.println("Choose which card you are going to play :");
+		player.showOwnHand();
 		int x = player.getIndexInput();
 
 		System.out.println("Where are you going to put it ?\nb = blue\t\tr = red\t\tg = green\t\ty = yellow\t\tw = white\n");
@@ -89,6 +90,7 @@ public class Game
 		}
 
 		System.out.println("Choose which card you are going to discard :");
+		player.showOwnHand();
 		int x = player.getIndexInput();
 
 		player.discardAndDraw(board, x);
@@ -115,7 +117,14 @@ public class Game
 			board.previousTurn();
 		}
 
-		System.out.println("Hints are not implemented in code yet ! Just tell it for now");
-		//player.giveAHint(board, playerWanted)
+		//System.out.println("Hints are not implemented in code yet ! Just tell it for now");
+
+		System.out.println("Who are you going to give a hint to ?");
+
+		//String playerName = player.getNameOfPlayerInput();
+		Player playerWanted = board.getPlayerByName();
+		System.out.println("You selected " + playerWanted + " !");
+
+		player.giveAHint(board, playerWanted);
 	}
 }

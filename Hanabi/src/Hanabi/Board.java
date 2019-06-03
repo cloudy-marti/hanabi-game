@@ -3,6 +3,7 @@ package Hanabi;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 /**
  * Board manages the current status of the game on board and on player's hands from the beginning to the end
@@ -227,6 +228,37 @@ public class Board {
 	public void addCardToBoard(Color color, int value)
 	{
 		board.put(color, value);
+	}
+
+	/*
+* String playerName = player.getNameOfPlayer();
+		Player playerWanted = board.getPlayerByName(playerName);
+* */
+
+	public Player getPlayerByName()
+	{
+		Player tmpPlayer = null;
+
+		while(tmpPlayer == null)
+		{
+			Scanner scan = new Scanner(System.in);
+			String playerName = scan.next();
+
+			for(Player player : players)
+			{
+				if(playerName.equals(player.getName()))
+				{
+					tmpPlayer = player;
+				}
+			}
+
+			if(tmpPlayer == null)
+			{
+				System.out.println("wrong name ! try again");
+			}
+		}
+
+		return tmpPlayer;
 	}
 
 	/**

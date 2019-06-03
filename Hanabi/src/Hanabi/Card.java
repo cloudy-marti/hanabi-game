@@ -9,6 +9,11 @@ public class Card {
 	private final Color color;
 	private final int number;
 
+	//private boolean hasHint;
+
+	private Color colorHint;
+	private int numberHint;
+
 	/**
 	 * Constructor
 	 * @param color Card's color
@@ -18,6 +23,9 @@ public class Card {
 	{
 		this.color = color;
 		this.number = number;
+
+		this.colorHint = Color.BLACK;
+		this.numberHint = 0;
 	}
 
 	/**
@@ -39,11 +47,12 @@ public class Card {
 	}
 
 	/**
-	 * Display an understandable representation of the card, with its color and its number
+	 * Return a string of the color, in upper case if it's the actual color of the Card, in lowerCase if it's only a hint
+	 * @param color Color given as a hint
+	 * @param isHint is the color we want to display or not
 	 * @return String
 	 */
-	@Override
-	public String toString()
+	private String getColor(Color color, boolean isHint)
 	{
 		String myColor = new String();
 
@@ -58,6 +67,73 @@ public class Card {
 		else
 			myColor = "W";
 
-		return "["+ myColor + ", " + number + "]";
+		if(!isHint)
+		{
+			return myColor;
+		}
+		else
+		{
+			return myColor.toLowerCase();
+		}
+	}
+
+	/**
+	 * Display an understandable representation of the card, with its color and its number
+	 * @return String
+	 */
+	@Override
+	public String toString()
+	{
+		StringBuilder cardStr = new StringBuilder();
+
+		cardStr.append("[");
+		cardStr.append(getColor(color, false));
+		cardStr.append(", ");
+		cardStr.append(number);
+		cardStr.append("]");
+
+		return cardStr.toString();
+	}
+
+	/**
+	 * Show the hints given to the card (nothing if there is no hint)
+	 * @return String
+	 */
+	public String showHint()
+	{
+		StringBuilder hintStr = new StringBuilder();
+
+		hintStr.append(" ");
+		if(colorHint == Color.BLACK)
+		{
+			hintStr.append(" ");
+		}
+		else
+		{
+			hintStr.append(getColor(colorHint, true));
+		}
+
+		hintStr.append(" ");
+		if(numberHint == 0)
+		{
+			hintStr.append(" ");
+		}
+		else
+		{
+			hintStr.append(colorHint);
+		}
+
+		hintStr.append(" ");
+
+		return hintStr.toString();
+	}
+
+	/**
+	 * Display a hidden card
+	 * @return String
+	 */
+	public String hiddenCardToString()
+	{
+		return "[ H ]";
 	}
 }
