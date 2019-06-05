@@ -37,18 +37,36 @@ public class Player
 	 * Get index input from the player.
 	 * @return input integer
 	 */
-	public int getIndexInput()
+	public int getNumberInput(int min, int max)
 	{
-		int x;
+		String input;
+		Scanner s;
+
+		boolean isValid = false;
 
 		do
 		{
-			Scanner s = new Scanner(System.in);
-			x = s.nextInt();
-		}
-		while(x > hand.size() || x < 0);
+			s = new Scanner(System.in);
+			input = s.next();
 
-		return x;
+			if(!Game.isNumeric(input))
+			{
+				continue;
+			}
+			if(Integer.parseInt(input) > max)
+			{
+				continue;
+			}
+			if(Integer.parseInt(input) < min)
+			{
+				continue;
+			}
+
+			isValid = true;
+		}
+		while(!isValid);
+
+		return Integer.parseInt(input);
 	}
 
 	/**
@@ -207,9 +225,41 @@ public class Player
 		draw(board);
 	}
 
-	public void giveAHint(Board board, Player chosenPlayer)
+	public void giveAHint(Board board, Player chosenPlayer, int hintType)
 	{
-		System.out.println();
+		boolean isHintValid = false;
+
+		while(!isHintValid)
+		{
+			if(hintType == 0)
+			{
+				System.out.println("Which number do you want to give as a hint ?");
+
+				int numberHint = getNumberInput(1, 5);
+				for(Card card : chosenPlayer.getHand().getDeck())
+				{
+					if(card.getNumber() == numberHint)
+					{
+						card.setNumberHint(numberHint);
+						isHintValid = true;
+					}
+				}
+			}
+			else
+			{
+				System.out.println("Which color do you want to give as a hint ?\n\tb = blue\t\tr = red\t\tg = green\t\ty = yellow\t\tw = white\n");
+				String colorHint = getColorInput();
+
+				for(Card card : chosenPlayer.getHand().getDeck())
+				{
+					if(card.getColor().equals(stringToColor(colorHint)))
+					{
+						card.setColorHint(stringToColor(colorHint));
+						isHintValid = true;
+					}
+				}
+			}
+		}
 	}
 
 	/**

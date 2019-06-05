@@ -16,7 +16,10 @@ public class Game
 
 		Player currentPlayer = whoseTurn(board);
 
-		System.out.println(currentPlayer + "'s turn !\nCheck other players' hand :\n");
+		System.out.println(currentPlayer + "'s turn !");
+		currentPlayer.showOwnHand();
+
+		System.out.println("\nCheck other players' hand :\n");
 		board.showOtherPlayersHand(currentPlayer);
 
 		System.out.println("1 = play a card\t\t2 = discard\t\t3 = give a hint");
@@ -65,9 +68,9 @@ public class Game
 	{
 		System.out.println("Choose which card you are going to play :");
 		player.showOwnHand();
-		int x = player.getIndexInput();
+		int x = player.getNumberInput(0, player.getHand().size() - 1);
 
-		System.out.println("Where are you going to put it ?\nb = blue\t\tr = red\t\tg = green\t\ty = yellow\t\tw = white\n");
+		System.out.println("Where are you going to put it ?\n\tb = blue\t\tr = red\t\tg = green\t\ty = yellow\t\tw = white\n");
 		String color = player.getColorInput();
 
 		player.playAndDraw(board, x, color);
@@ -91,7 +94,7 @@ public class Game
 
 		System.out.println("Choose which card you are going to discard :");
 		player.showOwnHand();
-		int x = player.getIndexInput();
+		int x = player.getNumberInput(0, player.getHand().size() - 1);
 
 		player.discardAndDraw(board, x);
 	}
@@ -117,14 +120,28 @@ public class Game
 			board.previousTurn();
 		}
 
-		//System.out.println("Hints are not implemented in code yet ! Just tell it for now");
-
 		System.out.println("Who are you going to give a hint to ?");
 
-		//String playerName = player.getNameOfPlayerInput();
 		Player playerWanted = board.getPlayerByName();
-		System.out.println("You selected " + playerWanted + " !");
+		System.out.println("You selected " + playerWanted + " !\n");
 
-		player.giveAHint(board, playerWanted);
+		System.out.println("Which kind of hint do you want to give them ?\n\t0 = number\t\t1 = color\n");
+		int hintType = player.getNumberInput(0, 1);
+
+		player.giveAHint(board, playerWanted, hintType);
 	}
+
+	public static boolean isNumeric(String str)
+	{
+		try
+		{
+			Integer.parseInt(str);
+			return true;
+		}
+		catch(NumberFormatException e)
+		{
+			return false;
+		}
+	}
+
 }

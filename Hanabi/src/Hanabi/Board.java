@@ -230,11 +230,6 @@ public class Board {
 		board.put(color, value);
 	}
 
-	/*
-* String playerName = player.getNameOfPlayer();
-		Player playerWanted = board.getPlayerByName(playerName);
-* */
-
 	public Player getPlayerByName()
 	{
 		Player tmpPlayer = null;
@@ -320,7 +315,6 @@ public class Board {
 	{
 		return "\nturn = " + turn + "\n" + deck.size() + " cards on deck\t " + deckToString() + "\nred token = "
 				+ redToken + "\tblue token = " + blueToken + "\n" + discard.size() + " cards on discard :\n" + discard
-				+ "\nBoard in game : " + boardToString() + "\n";
-	}	
-	
+				+ "\nFireworks in progress : " + boardToString() + "\n";
+	}
 }

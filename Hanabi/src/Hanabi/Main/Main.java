@@ -14,15 +14,35 @@ public class Main {
 	public static void main(String[] args) {
 
 		System.out.println("how many players ?");
+
+		String input;
 		Scanner s;
-		int x;
+
+		boolean isValid = false;
 
 		do
 		{
 			s = new Scanner(System.in);
-			x = s.nextInt();
+			input = s.next();
+
+			if(!Game.isNumeric(input))
+			{
+				continue;
+			}
+			if(Integer.parseInt(input) > 5)
+			{
+				continue;
+			}
+			if(Integer.parseInt(input) < 2)
+			{
+				continue;
+			}
+
+			isValid = true;
 		}
-		while(x < 2 || x > 5);
+		while(!isValid);
+
+		int x = Integer.parseInt(input);
 
 		Board board = new Board();
 		board.setNumberOfPlayers(x);

@@ -77,6 +77,16 @@ public class Card {
 		}
 	}
 
+	public void setNumberHint(int numberHint)
+	{
+		this.numberHint = numberHint;
+	}
+
+	public void setColorHint(Color colorHint)
+	{
+		this.colorHint = colorHint;
+	}
+
 	/**
 	 * Display an understandable representation of the card, with its color and its number
 	 * @return String
@@ -120,7 +130,7 @@ public class Card {
 		}
 		else
 		{
-			hintStr.append(colorHint);
+			hintStr.append(numberHint);
 		}
 
 		hintStr.append(" ");
