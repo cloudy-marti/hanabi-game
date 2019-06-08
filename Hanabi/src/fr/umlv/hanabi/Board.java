@@ -1,4 +1,7 @@
-package Hanabi;
+package fr.umlv.hanabi;
+
+import fr.umlv.hanabi.cards.Deck;
+import fr.umlv.hanabi.cards.Discard;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -230,7 +233,50 @@ public class Board {
 		board.put(color, value);
 	}
 
-	public Player getPlayerByName()
+	/**
+	 * Called at the end, it sums all the highest scores on board.
+	 * Displays a different message depending on the score.
+	 */
+	public void displayFinalScore()
+	{
+		int result = 0;
+
+		for(int value : board.values())
+		{
+			result += value;
+		}
+
+		if(result > 24)
+		{
+			System.out.println("\nLegendary, everyone left speechless, stars in their eyes !");
+		}
+		else if(result > 20)
+		{
+			System.out.println("\nAmazing, will be remembered for a very long time !");
+		}
+		else if(result > 15)
+		{
+			System.out.println("\nExcellent, crowd is very pleased !");
+		}
+		else if(result > 10)
+		{
+			System.out.println("\nHonourable, but will not be remembered for long ...");
+		}
+		else if(result > 5)
+		{
+			System.out.println("\nMediocre, just a spattering of applause.");
+		}
+		else
+		{
+			System.out.println("\nHorrible, booed by the crowd ...");
+		}
+	}
+
+	/**
+	 * Ask the player the name of another player and return the player wanted
+	 * @return Player
+	 */
+	public Player getPlayerByName(Player currentPlayer)
 	{
 		Player tmpPlayer = null;
 
@@ -247,9 +293,10 @@ public class Board {
 				}
 			}
 
-			if(tmpPlayer == null)
+			if(tmpPlayer == null || tmpPlayer.equals(currentPlayer))
 			{
 				System.out.println("wrong name ! try again");
+				tmpPlayer = null;
 			}
 		}
 

@@ -1,16 +1,16 @@
-package Hanabi;
+package fr.umlv.hanabi.cards;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.Collections;
 
 /**
- * Main deck of the board, containing the cards not given to the players.
+ * main deck of the board, containing the cards not given to the players.
  */
 public class Deck extends Cards
 {
 	/**
 	 * Constructor of Deck
-	 * Called at the very beginning of the program, it will set all the existing cards of Hanabi Game
+	 * Called at the very beginning of the program, it will set all the existing cards of fr.umlv.hanabi Game
 	 */
 	public Deck()
 	{

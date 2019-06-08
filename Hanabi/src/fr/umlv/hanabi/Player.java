@@ -1,6 +1,9 @@
-package Hanabi;
+package fr.umlv.hanabi;
 
-import java.awt.*;
+import fr.umlv.hanabi.cards.Card;
+import fr.umlv.hanabi.cards.Hand;
+
+import java.awt.Color;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -16,7 +19,7 @@ public class Player
 	 * Constructor of Player with a given name.
 	 * Board is needed to get the cards for the player's hand.
 	 * @param name Name of the player
-	 * @param board Main board
+	 * @param board main board
 	 */
 	public Player(String name, Board board)
 	{
@@ -86,7 +89,7 @@ public class Player
 	/**
 	 * Drawing a card from the deck to the player's hand.
 	 * Won't take any card if the deck is empty.
-	 * @param board Hanabi.Board where the game is played on
+	 * @param board fr.umlv.hanabi.Board where the game is played on
 	 */
 	private void draw(Board board)
 	{
@@ -103,7 +106,7 @@ public class Player
 	/**
 	 * Discards the card from the player's hand.
 	 * Add this card to the discard deck.
-	 * @param board Hanabi.Board where the game is played on
+	 * @param board fr.umlv.hanabi.Board where the game is played on
 	 * @param index Index of the card to be discarded, chosen by the player
 	 */
 	public void discardAndDraw(Board board, int index)
@@ -115,8 +118,8 @@ public class Player
 
 	/**
 	 * Check whether the card played can be put on game or not
-	 * @param board Hanabi.Board where the game is played on
-	 * @param card Hanabi.Card played
+	 * @param board fr.umlv.hanabi.Board where the game is played on
+	 * @param card fr.umlv.hanabi.cards.Card played
 	 * @param chosenColor Color where the card needs to be put, chosen by the player
 	 * @return boolean
 	 */
@@ -200,9 +203,9 @@ public class Player
 
 	/**
 	 * Put the card on game if allowed and draw a card from the deck
-	 * @param board Hanabi.Board where the game is played on
+	 * @param board fr.umlv.hanabi.Board where the game is played on
 	 * @param index Index of the card to be discarded, chosen by the player
-	 * @param colorStr Hanabi.Player's input
+	 * @param colorStr fr.umlv.hanabi.Player's input
 	 */
 	public void playAndDraw(Board board, int index, String colorStr)
 	{
@@ -225,7 +228,15 @@ public class Player
 		draw(board);
 	}
 
-	public void giveAHint(Board board, Player chosenPlayer, int hintType)
+	/**
+	 * Give a hint to the chosenPlayer.
+	 * hintType 0 if the player wants to give a numeric hint or 1 if the player wants to give a color hint.
+	 * The player only has to give a number or a color (depending on the hintType) and they will be assigned to the right cards.	 *
+	 * Let the player retry if the hint he wants to give cannot be put anywhere.
+	 * @param chosenPlayer Player to be given the hint to
+	 * @param hintType Color or Number (given as an int)
+	 */
+	public void giveAHint(Player chosenPlayer, int hintType)
 	{
 		boolean isHintValid = false;
 

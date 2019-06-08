@@ -1,6 +1,4 @@
-package Hanabi;
-
-import java.util.Scanner;
+package fr.umlv.hanabi;
 
 /**
  * Gameflow Manager - Will manage the turns and call the moves chosen by the players
@@ -8,9 +6,9 @@ import java.util.Scanner;
 public class Game
 {
 	/**
-	 * Main turn manager.
+	 * main turn manager.
 	 * This function allows the players to choose which move they want to do in their turn.
-	 * @param board Main board of the game
+	 * @param board main board of the game
 	 */
 	public static void turn(Board board) {
 
@@ -24,8 +22,7 @@ public class Game
 
 		System.out.println("1 = play a card\t\t2 = discard\t\t3 = give a hint");
 
-		Scanner s = new Scanner(System.in);
-		int x = s.nextInt();
+		int x = currentPlayer.getNumberInput(1, 3);
 
 		switch(x) {
 			case 1:
@@ -100,11 +97,9 @@ public class Game
 	}
 
 	/**
-	 * When the player chooses to give a hint to another player.<p>
-	 *     <i>Function not fully implemented yet.</i>
-	 * </p>
+	 * When the player chooses to give a hint to another player.
 	 * The hint is given only if there is at least one blue token.
-	 * If there are not enough token, the function catches an exception and allows the player to choose another move by decreasing the turn number.
+	 * If there are not enough tokens, the function catches an exception and allows the player to choose another move by decreasing the turn number.
 	 * @param board
 	 * @param player
 	 */
@@ -122,15 +117,20 @@ public class Game
 
 		System.out.println("Who are you going to give a hint to ?");
 
-		Player playerWanted = board.getPlayerByName();
+		Player playerWanted = board.getPlayerByName(player);
 		System.out.println("You selected " + playerWanted + " !\n");
 
 		System.out.println("Which kind of hint do you want to give them ?\n\t0 = number\t\t1 = color\n");
 		int hintType = player.getNumberInput(0, 1);
 
-		player.giveAHint(board, playerWanted, hintType);
+		player.giveAHint(playerWanted, hintType);
 	}
 
+	/**
+	 * Helper function that checks if a string can be converted into an int or not
+	 * @param str String to be checked
+	 * @return boolean
+	 */
 	public static boolean isNumeric(String str)
 	{
 		try

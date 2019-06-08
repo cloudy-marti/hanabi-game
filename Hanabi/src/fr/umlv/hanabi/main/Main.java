@@ -1,13 +1,13 @@
-package Hanabi.Main;
+package fr.umlv.hanabi.main;
 
-import Hanabi.Board;
-import Hanabi.Game;
-import Hanabi.Player;
+import fr.umlv.hanabi.Board;
+import fr.umlv.hanabi.Game;
+import fr.umlv.hanabi.Player;
 
 import java.util.Scanner;
 
 /**
- * Main class which calls the board's constructor and the main game's loop.
+ * main class which calls the board's constructor and the main game's loop.
  */
 public class Main {
 
@@ -73,11 +73,12 @@ public class Main {
 			 */
 			if(board.getDeck().size() == 0)
 			{
-				System.out.println("woops deck is empty");
+				System.out.println("\nDeck is empty !");
 				turnsLeft--;
 
 				if(turnsLeft <= 0)
 				{
+					board.displayFinalScore();
 					game = false;
 				}
 			}
@@ -88,7 +89,7 @@ public class Main {
 			 */
 			if(board.getRedToken() >= 3)
 			{
-				System.out.println("woops too many errors you are dead");
+				System.out.println("\nToo many errors you are dead !");
 				game = false;
 			}
 		}

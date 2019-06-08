@@ -1,4 +1,4 @@
-package Hanabi;
+package fr.umlv.hanabi.cards;
 
 import java.util.ArrayList;
 

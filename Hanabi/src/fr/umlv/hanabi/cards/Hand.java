@@ -1,4 +1,6 @@
-package Hanabi;
+package fr.umlv.hanabi.cards;
+
+import fr.umlv.hanabi.Board;
 
 /**
  * Player's hand.
@@ -9,7 +11,7 @@ public class Hand extends Cards
 
 	/**
 	 * Constructor of the player's hand that will draw as many cards as needed at the beginning of the game
-	 * @param board Main board of the game
+	 * @param board main board of the game
 	 */
 	public Hand(Board board)
 	{
@@ -42,7 +44,7 @@ public class Hand extends Cards
 
 	/**
 	 * Draws a card from the board's main deck and adds it to the hand
-	 * @param boardDeck Main deck of the game, containing the cards not given to the players yet
+	 * @param boardDeck main deck of the game, containing the cards not given to the players yet
 	 */
 	public void draw(Deck boardDeck)
 	{

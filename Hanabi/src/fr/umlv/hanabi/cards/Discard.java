@@ -1,10 +1,13 @@
-package Hanabi;
+package fr.umlv.hanabi.cards;
 
 /**
  * Discard deck, containing the cards discarded by the players.
  */
 public class Discard extends Cards {
 
+	/**
+	 * Constructor of an empty discard deck
+	 */
 	public Discard() {
 		super();
 	}

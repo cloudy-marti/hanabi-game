@@ -1,4 +1,4 @@
-package Hanabi;
+package fr.umlv.hanabi.cards;
 
 import java.awt.Color;
 
@@ -54,7 +54,7 @@ public class Card {
 	 */
 	private String getColor(Color color, boolean isHint)
 	{
-		String myColor = new String();
+		String myColor;
 
 		if(color == Color.RED)
 			myColor = "R";
