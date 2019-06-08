@@ -9,8 +9,8 @@ import java.util.Scanner;
 /**
  * main class which calls the board's constructor and the main game's loop.
  */
-public class Main {
-
+public class Hanabi
+{
 	public static void main(String[] args) {
 
 		System.out.println("how many players ?");

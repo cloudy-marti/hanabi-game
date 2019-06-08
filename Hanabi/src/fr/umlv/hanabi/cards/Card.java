@@ -9,8 +9,6 @@ public class Card {
 	private final Color color;
 	private final int number;
 
-	//private boolean hasHint;
-
 	private Color colorHint;
 	private int numberHint;
 

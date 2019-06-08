@@ -87,36 +87,6 @@ public class Player
 	}
 
 	/**
-	 * Drawing a card from the deck to the player's hand.
-	 * Won't take any card if the deck is empty.
-	 * @param board fr.umlv.hanabi.Board where the game is played on
-	 */
-	private void draw(Board board)
-	{
-		try
-		{
-			hand.draw(board.getDeck());
-		}
-		catch (Exception e)
-		{
-			System.out.println("it looks like you can't draw anymore !");
-		}
-	}
-
-	/**
-	 * Discards the card from the player's hand.
-	 * Add this card to the discard deck.
-	 * @param board fr.umlv.hanabi.Board where the game is played on
-	 * @param index Index of the card to be discarded, chosen by the player
-	 */
-	public void discardAndDraw(Board board, int index)
-	{
-		board.getDiscard().addCardToDiscard(hand.getCard(index));
-
-		draw(board);
-	}
-
-	/**
 	 * Check whether the card played can be put on game or not
 	 * @param board fr.umlv.hanabi.Board where the game is played on
 	 * @param card fr.umlv.hanabi.cards.Card played
@@ -202,6 +172,23 @@ public class Player
 	}
 
 	/**
+	 * Drawing a card from the deck to the player's hand.
+	 * Won't take any card if the deck is empty.
+	 * @param board fr.umlv.hanabi.Board where the game is played on
+	 */
+	private void draw(Board board)
+	{
+		try
+		{
+			hand.draw(board.getDeck());
+		}
+		catch (Exception e)
+		{
+			System.out.println("it looks like you can't draw anymore !");
+		}
+	}
+
+	/**
 	 * Put the card on game if allowed and draw a card from the deck
 	 * @param board fr.umlv.hanabi.Board where the game is played on
 	 * @param index Index of the card to be discarded, chosen by the player
@@ -224,6 +211,19 @@ public class Player
 		{
 			board.addCardToBoard(chosenCard.getColor(), chosenCard.getNumber());
 		}
+
+		draw(board);
+	}
+
+	/**
+	 * Discards the card from the player's hand.
+	 * Add this card to the discard deck.
+	 * @param board fr.umlv.hanabi.Board where the game is played on
+	 * @param index Index of the card to be discarded, chosen by the player
+	 */
+	public void discardAndDraw(Board board, int index)
+	{
+		board.getDiscard().addCardToDiscard(hand.getCard(index));
 
 		draw(board);
 	}
@@ -282,6 +282,9 @@ public class Player
 		return this.hand;
 	}
 
+	/**
+	 * Show player's hand with hidden cards and their hints
+	 */
 	public void showOwnHand()
 	{
 		StringBuilder handStr = new StringBuilder();

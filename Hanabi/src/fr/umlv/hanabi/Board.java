@@ -86,15 +86,6 @@ public class Board {
 	}
 
 	/**
-	 * Getter function - Board's blue tokens
-	 * @return int
-	 */
-	public int getBlueToken()
-	{
-		return this.blueToken;
-	}
-
-	/**
 	 * When needed (giving a hint by a player), this function decreases the number of blue tokens by one
 	 */
 	public void payWithBlueToken()
@@ -173,26 +164,23 @@ public class Board {
 	}
 
 	/**
-	 * Displays the hand of the other players when it's currentPlayer's turn.
-	 * @param currentPlayer player whose turn is right now
+	 * Getter function - Board's status
+	 * @return HashMap describing the status of the cards put in game
 	 */
-	public void showOtherPlayersHand(Player currentPlayer)
+	public HashMap<Color, Integer> getBoard()
 	{
-		StringBuilder playerStr = new StringBuilder();
+		return this.board;
+	}
 
-		for(Player player : players)
-		{
-			if(!player.equals(currentPlayer))
-			{
-				playerStr.append("\t");
-				playerStr.append(player);
-				playerStr.append("\t->\t");
-				playerStr.append(player.handToString());
-				playerStr.append("\n");
-			}
-		}
-
-		System.out.println(playerStr);
+	/**
+	 * Puts the card into the hashmap of the board.
+	 * Only the last allowed card of each color is saved into the hashmap.
+	 * @param color Card's color
+	 * @param value Card's number
+	 */
+	public void addCardToBoard(Color color, int value)
+	{
+		board.put(color, value);
 	}
 
 	/**
@@ -214,23 +202,57 @@ public class Board {
 	}
 
 	/**
-	 * Getter function - Board's status
-	 * @return HashMap describing the status of the cards put in game
+	 * Ask the player the name of another player and return the player wanted
+	 * @return Player
 	 */
-	public HashMap<Color, Integer> getBoard()
+	public Player getPlayerByName(Player currentPlayer)
 	{
-		return this.board;
+		Player tmpPlayer = null;
+
+		while(tmpPlayer == null)
+		{
+			Scanner scan = new Scanner(System.in);
+			String playerName = scan.next();
+
+			for(Player player : players)
+			{
+				if(playerName.equals(player.getName()))
+				{
+					tmpPlayer = player;
+				}
+			}
+
+			if(tmpPlayer == null || tmpPlayer.equals(currentPlayer))
+			{
+				System.out.println("wrong name ! try again");
+				tmpPlayer = null;
+			}
+		}
+
+		return tmpPlayer;
 	}
 
 	/**
-	 * Puts the card into the hashmap of the board.
-	 * Only the last allowed card of each color is saved into the hashmap.
-	 * @param color Card's color
-	 * @param value Card's number
+	 * Displays the hand of the other players when it's currentPlayer's turn.
+	 * @param currentPlayer player whose turn is right now
 	 */
-	public void addCardToBoard(Color color, int value)
+	public void showOtherPlayersHand(Player currentPlayer)
 	{
-		board.put(color, value);
+		StringBuilder playerStr = new StringBuilder();
+
+		for(Player player : players)
+		{
+			if(!player.equals(currentPlayer))
+			{
+				playerStr.append("\t");
+				playerStr.append(player);
+				playerStr.append("\t->\t");
+				playerStr.append(player.handToString());
+				playerStr.append("\n");
+			}
+		}
+
+		System.out.println(playerStr);
 	}
 
 	/**
@@ -270,37 +292,6 @@ public class Board {
 		{
 			System.out.println("\nHorrible, booed by the crowd ...");
 		}
-	}
-
-	/**
-	 * Ask the player the name of another player and return the player wanted
-	 * @return Player
-	 */
-	public Player getPlayerByName(Player currentPlayer)
-	{
-		Player tmpPlayer = null;
-
-		while(tmpPlayer == null)
-		{
-			Scanner scan = new Scanner(System.in);
-			String playerName = scan.next();
-
-			for(Player player : players)
-			{
-				if(playerName.equals(player.getName()))
-				{
-					tmpPlayer = player;
-				}
-			}
-
-			if(tmpPlayer == null || tmpPlayer.equals(currentPlayer))
-			{
-				System.out.println("wrong name ! try again");
-				tmpPlayer = null;
-			}
-		}
-
-		return tmpPlayer;
 	}
 
 	/**
